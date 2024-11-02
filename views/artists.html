@@ -1,0 +1,25 @@
+{{template "Header" .}}
+<div class="container">
+
+    <main>
+        {{if .Artists}}
+        <div class="artists-grid">
+            {{range .Artists}}
+            <div class="artist-card">
+                <a href="/details/{{.ID}}">
+                    <div class="artist-image-wrapper">
+                        <img src="{{.Image}}" alt="{{.Name}}" class="artist-image">
+                    </div><br>
+                    <h2 class="head2">{{.Name}}</h2><br>
+                </a>
+            </div>
+            {{end}}
+        </div>
+        {{else}}
+        <p>No artists data available.</p>
+        {{end}}
+    </main>
+</div>
+</body>
+
+</html>

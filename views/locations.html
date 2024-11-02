@@ -1,0 +1,38 @@
+{{template "Header" .}}
+
+<div class="container">
+    <main>
+        {{if .Artists}}
+        <div class="artists-grid">
+            {{range .Artists}}
+            <div class="artist-card">
+                <a href="/details/{{.ID}}">
+                    <div class="artist-image-wrapper">
+                        <img src="{{.Image}}" alt="{{.Name}}" class="artist-image">
+                    </div>
+                    <h2 class="head2">{{.Name}}</h2><br>
+                    <div class="artist-details">
+
+                        <!-- Display Locations for this Artist -->
+                        <h3 class="head3">Locations:</h3>
+                        {{$ID := .ID}}
+                        {{range $.Locations.Index}} {{if eq .ID $ID}}
+                        {{range .Location}}
+                        <ul>{{.}}</ul>
+                        {{end}}
+                        {{break}}
+                        <!-- Stop after displaying relevant relations -->
+                        {{end}} {{end}}
+                    </div>
+                </a>
+            </div>
+            {{end}}
+        </div>
+        {{else}}
+        <p>No artists data available.</p>
+        {{end}}
+    </main>
+</div>
+</body>
+
+</html>

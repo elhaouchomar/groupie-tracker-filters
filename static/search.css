@@ -1,0 +1,62 @@
+#search-results {
+    position: absolute;
+    top: 100%;
+    left: 15px;
+    right: 15px;
+    z-index: 1000;
+    background: #000000;
+    max-height: 200px;
+    overflow-y: scroll; /* Allow vertical scrolling */
+    display: none; /* Initially hidden */
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    scrollbar-width: none; /* For Firefox */
+}
+
+#search-results::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Opera */
+}
+
+.results-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex; /* Use flexbox for centering */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+}
+
+.result-item {
+    padding: 12px 15px;
+    border-bottom: 1px solid #333;
+    color: #fff; /* Change to white for contrast */
+    transition: background 0.3s;
+    width: 100%; /* Full width for result items */
+    text-align: center; /* Center text within items */
+}
+
+.result-item:hover {
+    background: #444;
+}
+
+.no-results {
+    padding: 10px;
+    color: #999; /* Change to lighter color for visibility */
+    text-align: center;
+}
+
+#details-card {
+    width: 80%;
+    max-width: 700px;
+    margin: 6.5% auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 600px) {
+    #details-card {
+        width: 95%;
+        margin: 5% auto;
+    }
+}

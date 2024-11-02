@@ -1,0 +1,39 @@
+{{template "Header" .}}
+<div class="container"  id="details-card">
+    <main>
+        <div class="artists-grid">
+            <div>
+                <div class="artist-image-wrapper">
+                    <img src="{{.Artist.Image}}" alt="{{.Artist.Name}}" class="artist-image">
+                </div>
+                <h1 class="head2">{{.Artist.Name}}</h1>
+                <div class="artist-info">
+                    <p>Creation Date: {{.Artist.CreationDate}}</p>
+                    <p>Number of Members: {{len .Artist.Members}}</p>
+                    <p>First Album Date: {{.Artist.FirstAlbum}}</p>
+                </div>
+            </div>
+            <div>
+                <div class="artist-locations">
+                    <h2>Locations:</h2>
+                    {{range .Locations}}
+                    <p>{{.}}</p>
+                    {{end}}
+                </div><br><br>
+                <div class="artist-members">
+                    <h2>Members:</h2>
+                    {{range .Artist.Members}}
+                    <p>{{.}}</p>
+                    {{end}}
+                </div>
+            </div>
+        </div>
+        <a class="btn-action" href="/artists">Back</a>
+    </main>
+</div>
+<link rel="stylesheet" href="/static/style.css">
+<link rel="stylesheet" href="/static/select.css">
+<link rel="stylesheet" href="/static/search.css">
+</body>
+
+</html>

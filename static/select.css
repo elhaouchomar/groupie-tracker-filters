@@ -1,0 +1,173 @@
+:root {
+    --background-primary: rgba(0, 0, 0, 0.7);
+    --background-secondary: #444;
+    --background-checked: #555;
+    --background-hover: #666;
+    --background-button: rgb(84, 5, 141);
+    --background-button-hover: rgb(149, 0, 255);
+    --color-text-primary: #ddd;
+    --color-text-secondary: #ffffff;
+    --border-color: #ddd;
+    --input-background: #333;
+    --font-size-label: 16px;
+    --font-size-label-small: 14px;
+    --font-size-heading: 40px;
+    --font-size-heading-small: 25px;
+    --border-radius: 10px;
+    --border-radius-small: 4px;
+}
+
+.centered-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 60px);
+    margin-top: 60px;
+}
+
+.choose-artists {
+    height: 50%;
+    width: 100%;
+    max-width: 600px;
+    background: var(--background-primary);
+    padding: 20px;
+    text-align: center;
+    border-radius: var(--border-radius);
+    color: var(--color-text-primary);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+    padding-top: 6%;
+}
+
+.choose-artists h2 {
+    margin-bottom: 45px;
+    font-size: var(--font-size-heading);
+    color: var(--color-text-secondary);
+}
+
+.choose-artists label {
+    display: block;
+    font-size: var(--font-size-label);
+    color: var(--color-text-primary);
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.choose-artists .date-inputs {
+    display: none;
+    margin-top: 10px;
+    text-align: left;
+}
+
+.date-inputs {
+    margin: 10px 0;
+}
+
+.date-inputs label {
+    display: block;
+    font-size: var(--font-size-label-small);
+    color: var(--color-text-primary);
+    margin-bottom: 5px;
+}
+
+.date-inputs input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-small);
+    background: var(--input-background);
+    color: var(--color-text-primary);
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+#checkbox1,
+#checkbox2,
+#checkbox3,
+#checkbox4 {
+    display: none;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.choose-artists input[type="checkbox"]+label {
+    margin-bottom: 20px;
+    display: flex;
+    padding: 10px;
+    background: var(--background-secondary);
+    color: var(--color-text-primary);
+    border-radius: var(--border-radius-small);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.choose-artists input[type="checkbox"]:checked+label {
+    background: var(--background-checked);
+}
+
+.choose-artists input[type="checkbox"]:checked+label+.date-inputs {
+    display: block;
+}
+
+.choose-artists input[type="checkbox"]+label:hover {
+    background: var(--background-hover);
+}
+
+.btn-action {
+    text-align: center;
+    display: block;
+    width: 100px;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: var(--background-button);
+    color: var(--color-text-secondary);
+    font-size: 16px;
+    cursor: pointer;
+    margin: 20px auto 0;
+    transition: background-color 0.3s ease;
+}
+
+.btn-action:hover {
+    background: var(--background-button-hover);
+}
+
+@media (max-width: 1000px) {
+    .choose-artists {
+        padding: 15px;
+        margin-top: 22%;
+        margin-bottom: 22%;
+    }
+
+    .choose-artists label {
+        font-size: var(--font-size-label-small);
+    }
+}
+
+@media (max-width: 600px) {
+    .choose-artists {
+        padding: 10px;
+    }
+
+    .choose-artists h2 {
+        font-size: var(--font-size-heading-small);
+    }
+
+    .choose-artists label {
+        font-size: var(--font-size-label-small);
+    }
+
+    .date-inputs input {
+        width: 100%;
+        padding: 6px;
+    }
+
+    .btn-action {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
