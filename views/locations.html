@@ -1,5 +1,4 @@
 {{template "Header" .}}
-
 <div class="container">
     <main>
         {{if .Artists}}
@@ -12,16 +11,13 @@
                     </div>
                     <h2 class="head2">{{.Name}}</h2><br>
                     <div class="artist-details">
-
-                        <!-- Display Locations for this Artist -->
                         <h3 class="head3">Locations:</h3>
                         {{$ID := .ID}}
                         {{range $.Locations.Index}} {{if eq .ID $ID}}
                         {{range .Location}}
-                        <ul>{{.}}</ul>
+                        <ul class="head2">{{.}}</ul>
                         {{end}}
                         {{break}}
-                        <!-- Stop after displaying relevant relations -->
                         {{end}} {{end}}
                     </div>
                 </a>
@@ -29,7 +25,8 @@
             {{end}}
         </div>
         {{else}}
-        <p>No artists data available.</p>
+        <h1>Result 0</h1>
+        <p>No results found.</p>
         {{end}}
     </main>
 </div>

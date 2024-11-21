@@ -14,7 +14,7 @@
 
 <body>
     <header>
-        
+        <input type="checkbox" name="" id="chk1">
         <div class="logo">
             <h1>Groupie</h1>
             <h1>Tracker</h1>
@@ -22,8 +22,8 @@
 
         <div class="search-box">
             <input type="text" id="srch" placeholder="Search..." onkeyup="debounceSearch()">
-            <button type="submit"><i class="fa fa-search"></i></button>
             <div id="search-results"></div>
+            <button type="submit"><i class="fa fa-search"></i></button>
         </div>
 
         <ul class="nav">
@@ -41,8 +41,7 @@
             </label>
         </div>
     </header>
-
-    <script src="/dynamic/search.js"></script>
+    <script src="/dynamic/search.js" defer></script>
 </body>
 
 </html>

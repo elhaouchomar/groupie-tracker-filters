@@ -1,6 +1,5 @@
 {{template "Header" .}}
 <div class="container">
-
     <main>
         {{if .Artists}}
         <div class="artists-grid">
@@ -15,7 +14,7 @@
                         <h3 class="head3">Members:</h3>
                         <ul class="artist-members">
                             {{range .Members}}
-                            <li>{{.}}</li>
+                            <li class="head2">{{.}}</li>
                             {{end}}
                         </ul>
                     </div>
@@ -24,10 +23,10 @@
             {{end}}
         </div>
         {{else}}
-        <p>No artists data available.</p>
+        <h1>Result 0</h1>
+        <p>No results found.</p>
         {{end}}
     </main>
 </div>
 </body>
-
 </html>

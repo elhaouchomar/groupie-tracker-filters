@@ -2,10 +2,10 @@
 <section id="filter1">
     <div class="choose-artists">
         <h2>Choose Your Artists</h2>
-        <form id="myForm" method="post" action="/filter/all">
-            <input type="checkbox" id="checkbox1" name="filter-cd">
-            <label for="checkbox1">Creation Date</label>
-            <div class="date-inputs dates1">
+        <form id="myForm" method="post" action="/filter">
+            <input type="checkbox" id="checkbox-creation-date" name="filter-cd">
+            <label for="checkbox-creation-date">Creation Date</label>
+            <div class="date-inputs">
                 <label for="start-date1">From:</label>
                 <input type="range" id="start-date1" name="start-date1" max="2024" min="1900" value="1900"
                     oninput="this.nextElementSibling.value = this.value">
@@ -15,94 +15,64 @@
                     oninput="this.nextElementSibling.value = this.value">
                 <output id="creationend">2024</output>
             </div>
-
-            <input type="checkbox" id="checkbox2" name="filter-fad">
-            <label for="checkbox2">First Album Date</label>
-            <div class="date-inputs dates2">
+            <input type="checkbox" id="checkbox-first-album-date" name="filter-fad">
+            <label for="checkbox-first-album-date">First Album Date</label>
+            <div class="date-inputs">
                 <label for="start-date2">From:</label>
                 <input type="range" id="start-date2" name="start-date2" max="2024" min="1900" value="1900"
                     oninput="this.nextElementSibling.value = this.value">
                 <output id="creationstart">1900</output>
-
                 <label for="end-date2">To:</label>
                 <input type="range" id="end-date2" name="end-date2" max="2024" min="1900" value="2024"
                     oninput="this.nextElementSibling.value = this.value">
                 <output id="creationstart">2024</output>
             </div>
-
-            <input type="checkbox" id="checkbox3" name="filter-nom">
-            <label for="checkbox3">Number of Members</label>
-            <div class="date-inputs dates3">
-                <div class="checkbox-group">
-                        <label>1 <input type="checkbox" name="number" value="1"></label>
-                        <label>2 <input type="checkbox" name="number" value="2"></label>
-                        <label>3 <input type="checkbox" name="number" value="3"></label>
-                        <label>4 <input type="checkbox" name="number" value="4"></label>
-                        <label>5 <input type="checkbox" name="number" value="5"></label>
-                        <label>6 <input type="checkbox" name="number" value="6"></label>
-                        <label>7 <input type="checkbox" name="number" value="7"></label>
-                        <label>8 <input type="checkbox" name="number" value="8"></label>
+            <input type="checkbox" id="checkbox-number-of-members" name="filter-nom">
+            <label for="checkbox-number-of-members">Number of Members</label>
+            <div class="checkbox-group">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="checkbox1" name="number" value="1">
+                    <label for="checkbox1">1</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="checkbox2" name="number" value="2">
+                    <label for="checkbox2">2</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="checkbox3" name="number" value="3">
+                    <label for="checkbox3">3</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="checkbox4" name="number" value="4">
+                    <label for="checkbox4">4</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="checkbox5" name="number" value="5">
+                    <label for="checkbox5">5</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="checkbox6" name="number" value="6">
+                    <label for="checkbox6">6</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="checkbox7" name="number" value="7">
+                    <label for="checkbox7">7</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="checkbox8" name="number" value="8">
+                    <label for="checkbox8">8</label>
                 </div>
             </div>
-
-            <input type="checkbox" id="checkbox4" name="filter-loc">
-            <label for="checkbox4">Location</label>
-            <div class="date-inputs dates4">
-                <label for="location">Location:</label>
+            <input type="checkbox" id="checkbox-location" name="filter-loc">
+            <label for="checkbox-location">Location</label>
+            <div class="date-inputs">
+                <label for="location"></label>
                 <input type="text" id="location" name="location">
             </div>
-            <a href="#filter2" class="btn-action">Find</a>
+            <button type="submit" class="btn-action">Find</button>
         </form>
     </div>
 </section>
+</body>
 
-<section id="filter2">
-    <div class="container">
-        <main>
-            {{if .}}
-            <div class="artists-grid">
-                {{range .}}
-                <div class="artist-card">
-                    <a href="/details/{{.ID}}">
-                        <div class="artist-image-wrapper">
-                            <img src="{{.Image}}" alt="{{.Name}}" class="artist-image">
-                        </div>
-                        <h2 class="head2">{{.Name}}</h2><br>
-                        <div class="artist-details">
-                            <p>Creation Date: {{.CreationDate}}</p><br>
-                            <p>First Album: {{.FirstAlbum}}</p><br>
-                            <p>Number of Members: {{len .Members}}</p>
-                        </div>
-                    </a>
-                </div>
-                {{end}}
-            </div>
-            {{else}}
-            <p>No artists data available.</p>
-            {{end}}
-        </main>
-    </div>
-    <!-- </section>
-<script>
-
-    let creationstart = document.getElementById("start-date1")
-    if (creationstart) {creationout
-        creationstart.addEventListener("mousemove", () => {
-            let n = document.getElementById("creationstart")
-            n.textContent = creationstart.value
-        })
-    }
-    let creationend = document.getElementById("end-date1")
-    if (creationend) {
-        creationend.addEventListener("mousemove", () => {
-            let n = document.getElementById("creationend")
-            n.textContent = creationend.value
-        })
-    }
-
-
-
-</script> -->
-    </body>
-
-    </html>
+</html>

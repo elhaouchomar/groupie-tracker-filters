@@ -1,12 +1,12 @@
 {{template "Header" .}}
-<div class="container"  id="details-card">
+<div class="container" id="details-card">
     <main>
         <div class="artists-grid">
             <div>
                 <div class="artist-image-wrapper">
                     <img src="{{.Artist.Image}}" alt="{{.Artist.Name}}" class="artist-image">
                 </div>
-                <h1 class="head2">{{.Artist.Name}}</h1>
+                <h1 class="head">{{.Artist.Name}}</h1>
                 <div class="artist-info">
                     <p>Creation Date: {{.Artist.CreationDate}}</p>
                     <p>Number of Members: {{len .Artist.Members}}</p>
@@ -28,12 +28,10 @@
                 </div>
             </div>
         </div>
+        <img style="border-radius: 10px;" class="image" src="/static/map.jpg" alt="Localisation">
         <a class="btn-action" href="/artists">Back</a>
     </main>
 </div>
-<link rel="stylesheet" href="/static/style.css">
-<link rel="stylesheet" href="/static/select.css">
-<link rel="stylesheet" href="/static/search.css">
 </body>
 
 </html>

@@ -13,7 +13,7 @@ h1 {
     font-weight: bold;
 }
 
-a.form_button {
+a.form-button {
     display: inline-block;
     padding: 10px 20px;
     font-size: 16px;
@@ -25,6 +25,6 @@ a.form_button {
     transition: background-color 0.3s ease;
 }
 
-a.form_button:hover {
+a.form-button:hover {
     background-color: #c300ff;
 }

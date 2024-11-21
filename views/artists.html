@@ -1,6 +1,5 @@
 {{template "Header" .}}
 <div class="container">
-
     <main>
         {{if .Artists}}
         <div class="artists-grid">
@@ -16,7 +15,8 @@
             {{end}}
         </div>
         {{else}}
-        <p>No artists data available.</p>
+        <h1>Result 0</h1>
+        <p>No results found.</p>
         {{end}}
     </main>
 </div>

@@ -4,35 +4,35 @@
     left: 15px;
     right: 15px;
     z-index: 1000;
-    background: #000000;
+    background: #000;
     max-height: 200px;
-    overflow-y: scroll; /* Allow vertical scrolling */
-    display: none; /* Initially hidden */
+    overflow-y: scroll; 
+    display: none;
     border-radius: 0 0 8px 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     scrollbar-width: none; /* For Firefox */
 }
 
 #search-results::-webkit-scrollbar {
-    display: none; /* For Chrome, Safari, and Opera */
+    display: none; /* For Chrome, Safari, and Edge */
 }
 
 .results-list {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex; /* Use flexbox for centering */
-    flex-direction: column; /* Stack items vertically */
-    align-items: center; /* Center items horizontally */
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
 }
 
 .result-item {
     padding: 12px 15px;
     border-bottom: 1px solid #333;
-    color: #fff; /* Change to white for contrast */
+    color: #fff;
     transition: background 0.3s;
-    width: 100%; /* Full width for result items */
-    text-align: center; /* Center text within items */
+    width: 100%;
+    text-align: center; 
 }
 
 .result-item:hover {
@@ -41,14 +41,14 @@
 
 .no-results {
     padding: 10px;
-    color: #999; /* Change to lighter color for visibility */
+    color: #999;
     text-align: center;
 }
 
 #details-card {
     width: 80%;
     max-width: 700px;
-    margin: 6.5% auto;
+    margin: 10% auto;
     display: flex;
     justify-content: center;
     align-items: center;

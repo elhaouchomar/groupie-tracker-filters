@@ -2,51 +2,127 @@ package controllers
 
 import (
     "encoding/json"
+    "html/template"
     "net/http"
-    "strconv"
     "strings"
+    "strconv"
     "groupie-tracker/models"
 )
 
 type SearchResult struct {
-    ID    int    `json:"id"`
-    Name  string `json:"name"`
-    Type  string `json:"type"`
-    Image string `json:"image,omitempty"`
+    ID   int    `json:"id"`
+    Name string `json:"name"`
+    Type string `json:"type"`
 }
 
 func SearchHandler(w http.ResponseWriter, r *http.Request) {
-    query := strings.ToLower(r.URL.Query().Get("q"))
-    suggestions := make([]SearchResult, 0)
-    artistMap := make(map[int]models.Artist)
-    for _, artist := range models.AllArtists {
-        artistMap[artist.ID] = artist
+    if r.Method != http.MethodGet {
+        Err405(w)
+        return
     }
+
+    query := strings.ToLower(r.URL.Query().Get("q"))
+    if query == "" {
+        Err400(w)
+        return
+    }
+
+    if r.URL.Query().Get("suggestion") == "true" {
+        handleSuggestions(w, query)
+    } else {
+        handleSearchResults(w, query)
+    }
+}
+
+func handleSuggestions(w http.ResponseWriter, query string) {
+    suggestions := []SearchResult{}
+    seen := make(map[int]bool)
     for _, artist := range models.AllArtists {
-        if strings.Contains(strings.ToLower(artist.Name), query) {
-            suggestions = append(suggestions, SearchResult{ID: artist.ID, Name: artist.Name, Type: "artist/band", Image: artist.Image})
+        addSuggestions(&suggestions, artist, query, seen)
+    }
+    w.Header().Set("Content-Type", "application/json")
+    json.NewEncoder(w).Encode(suggestions)
+}
+
+func addSuggestions(suggestions *[]SearchResult, artist models.Artist, query string, seen map[int]bool) {
+    if strings.Contains(strings.ToLower(artist.Name), query) && !seen[artist.ID] {
+        *suggestions = append(*suggestions, SearchResult{artist.ID, artist.Name, "artist/band name"})
+        seen[artist.ID] = true
+    }
+    if strings.Contains(strings.ToLower(artist.FirstAlbum), query) && !seen[artist.ID] {
+        *suggestions = append(*suggestions, SearchResult{artist.ID, artist.Name + " - " + artist.FirstAlbum, "first album date"})
+        seen[artist.ID] = true
+    }
+    if strings.Contains(strconv.Itoa(artist.CreationDate), query) && !seen[artist.ID] {
+        *suggestions = append(*suggestions, SearchResult{artist.ID, artist.Name + " - " + strconv.Itoa(artist.CreationDate), "creation date"})
+        seen[artist.ID] = true
+    }
+    for _, member := range artist.Members {
+        if strings.Contains(strings.ToLower(member), query) && !seen[artist.ID] {
+            *suggestions = append(*suggestions, SearchResult{artist.ID, artist.Name + " - " + member, "member"})
+            seen[artist.ID] = true
+        }
+    }
+    for _, loc := range models.AllLocations.Index {
+        if loc.ID == artist.ID {
+            for _, location := range loc.Location {
+                if strings.Contains(strings.ToLower(location), query) && !seen[artist.ID] {
+                    *suggestions = append(*suggestions, SearchResult{artist.ID, artist.Name + " - " + location, "location"})
+                    seen[artist.ID] = true
+                }
+            }
+        }
+    }
+}
+
+func handleSearchResults(w http.ResponseWriter, query string) {
+    results := []models.Artist{}
+    seen := make(map[int]bool)
+    for _, artist := range models.AllArtists {
+        if matchesQuery(artist, query, seen) {
+            results = append(results, artist)
+        }
+    }
+
+    t, err := template.ParseFiles("views/search.html", "views/header.html")
+    if err != nil {
+        Err500(w)
+        return
+    }
+
+    if len(results) == 0 {
+        results = []models.Artist{}
+    }
+
+    if err := t.Execute(w, results); err != nil {
+        Err500(w)
+    }
+}
+
+func matchesQuery(artist models.Artist, query string, seen map[int]bool) bool {
+    if !seen[artist.ID] {
+        if strings.Contains(strings.ToLower(artist.Name), query) ||
+            strings.Contains(strings.ToLower(artist.FirstAlbum), query) ||
+            strings.Contains(strconv.Itoa(artist.CreationDate), query) {
+            seen[artist.ID] = true
+            return true
         }
         for _, member := range artist.Members {
             if strings.Contains(strings.ToLower(member), query) {
-                suggestions = append(suggestions, SearchResult{ID: artist.ID, Name: artist.Name + " - " + member, Type: "artist - member", Image: artist.Image})
+                seen[artist.ID] = true
+                return true
             }
         }
-        if strings.Contains(strings.ToLower(artist.FirstAlbum), query) {
-            suggestions = append(suggestions, SearchResult{ID: artist.ID, Name: artist.Name + " - " + artist.FirstAlbum, Type: "artist - first album date", Image: artist.Image})
-        }
-        if strings.Contains(strconv.Itoa(artist.CreationDate), query) {
-            suggestions = append(suggestions, SearchResult{ID: artist.ID, Name: artist.Name + " - " + strconv.Itoa(artist.CreationDate), Type: "artist - creation date", Image: artist.Image})
-        }
-        for _, locationData := range models.AllLocations.Index {
-            if locationData.ID == artist.ID {
-                for _, location := range locationData.Location {
+        for _, loc := range models.AllLocations.Index {
+            if loc.ID == artist.ID {
+                for _, location := range loc.Location {
                     if strings.Contains(strings.ToLower(location), query) {
-                        suggestions = append(suggestions, SearchResult{ID: artist.ID, Name: artist.Name + " - " + location, Type: "location", Image: artist.Image})
+                        seen[artist.ID] = true
+                        return true
                     }
                 }
             }
         }
     }
-    w.Header().Set("Content-Type", "application/json")
-    json.NewEncoder(w).Encode(suggestions)
+    return false
 }

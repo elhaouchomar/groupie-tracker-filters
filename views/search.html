@@ -1,0 +1,32 @@
+{{template "Header" .}}
+<div class="container">
+    <main>
+        {{if .}}
+        <div class="artists-grid">
+            {{range .}}
+            <div class="artist-card">
+                <a href="/details/{{.ID}}">
+                    <div class="artist-image-wrapper">
+                        <img src="{{.Image}}" alt="{{.Name}}" class="artist-image">
+                    </div>
+                    <h2 class="head2">{{.Name}}</h2><br>
+                    <div class="artist-details">
+                        <p>Creation Date: {{.CreationDate}}</p><br>
+                        <p>First Album: {{.FirstAlbum}}</p><br>
+                        <p>Number of Members: {{len .Members}}</p>
+                    </div>
+                </a>
+            </div>
+            {{end}}
+        </div>
+        {{else}}
+        <div style="margin: 100px; text-align: center;" >
+            <h1>Result 0</h1><br><br>
+            <p>No results found.</p>
+        </div>
+        {{end}}
+    </main>
+</div>
+</body>
+
+</html>

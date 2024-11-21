@@ -17,6 +17,38 @@
     --border-radius-small: 4px;
 }
 
+.checkbox-item {
+    display: inline-block;
+    margin-right: 3%;
+}
+
+.checkbox-item input[type="checkbox"] {
+    margin-right: 5px;
+    display: none;
+}
+
+.checkbox-item label {
+    font-size: var(--font-size-label);
+    color: var(--color-text-primary);
+    background: #444;
+    padding: 10px;
+    border-radius: var(--border-radius-small);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.checkbox-item input[type="checkbox"]:checked + label {
+    background: var(--background-button);
+    color: white;
+}
+
+.hidden-section {
+    display: none;
+}
+
+#checkbox-creation-date:checked ~ .hidden-section {
+    display: block;
+}
+
 .centered-container {
     display: flex;
     justify-content: center;
@@ -59,15 +91,14 @@
     text-align: left;
 }
 
-.date-inputs {
-    margin: 10px 0;
+.choose-artists .checkbox-group {
+    display: none;
+    margin-top: 10px;
+    text-align: center;
 }
 
-.date-inputs label {
-    display: block;
-    font-size: var(--font-size-label-small);
-    color: var(--color-text-primary);
-    margin-bottom: 5px;
+.date-inputs {
+    margin: 10px 0;
 }
 
 .date-inputs input {
@@ -81,20 +112,14 @@
     box-sizing: border-box;
 }
 
-#checkbox1,
-#checkbox2,
-#checkbox3,
-#checkbox4 {
+#checkbox-creation-date,
+#checkbox-number-of-members,
+#checkbox-first-album-date,
+#checkbox-location {
     display: none;
 }
 
-.checkbox-group {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.choose-artists input[type="checkbox"]+label {
+.choose-artists input[type="checkbox"] + label {
     margin-bottom: 20px;
     display: flex;
     padding: 10px;
@@ -105,16 +130,9 @@
     transition: background-color 0.3s ease;
 }
 
-.choose-artists input[type="checkbox"]:checked+label {
-    background: var(--background-checked);
-}
-
-.choose-artists input[type="checkbox"]:checked+label+.date-inputs {
+.choose-artists input[type="checkbox"]:checked + label + .date-inputs,
+.choose-artists input[type="checkbox"]:checked + label + .checkbox-group {
     display: block;
-}
-
-.choose-artists input[type="checkbox"]+label:hover {
-    background: var(--background-hover);
 }
 
 .btn-action {

@@ -19,31 +19,7 @@
     --card-hover-box-shadow: rgba(0, 0, 0, 0.2);
     --card-hover-animation: scale(1.1) 0.2s ease-in-out;
     --body-font-family: 'Montserrat', sans-serif;
-    --header-font-family: 'Playfair Display', serif
-}
-
-html {
-    scroll-behavior: smooth;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box
-}
-
-#filter1 {
-    padding-top: 50px;
-    padding-bottom: 200px
-}
-
-#filter2 {
-    padding-top: 115px;
-    display: flex;
-    align-items: center;
-    justify-content: center
-}
-
-a {
-    text-decoration: none;
-    color: var(--body-text-color)
+    --header-font-family: 'Playfair Display', serif;
 }
 
 * {
@@ -51,14 +27,34 @@ a {
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
-    font-weight: bold
+    font-weight: bold;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
     background: var(--background-image) no-repeat center center fixed;
     background-size: cover;
     margin-top: 100px;
-    color: var(--body-text-color)
+    color: var(--body-text-color);
+}
+
+#filter1 {
+    padding: 50px 0 200px;
+}
+
+#filter2 {
+    padding-top: 115px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+a {
+    text-decoration: none;
+    color: var(--body-text-color);
 }
 
 header {
@@ -72,14 +68,14 @@ header {
     left: 0;
     z-index: 99;
     box-shadow: 0 0 10px var(--header-shadow-color);
-    background-color: var(--header-background-color)
+    background-color: var(--header-background-color);
 }
 
 header .search-box {
     position: relative;
     width: 100%;
     max-width: 400px;
-    margin: auto
+    margin: auto;
 }
 
 header .search-box input {
@@ -92,7 +88,7 @@ header .search-box input {
     color: var(--search-box-text-color);
     font-size: 16px;
     text-align: center;
-    padding: 0 10px
+    padding: 0 10px;
 }
 
 header .search-box button {
@@ -107,16 +103,16 @@ header .search-box button {
     background-color: var(--button-background-color);
     display: flex;
     align-items: center;
-    justify-content: center
+    justify-content: center;
 }
 
 header .search-box button i {
     font-size: 20px;
-    color: black
+    color: black;
 }
 
 header .search-box button:hover {
-    background-color: var(--button-hover-color)
+    background-color: var(--button-hover-color);
 }
 
 header .logo {
@@ -124,17 +120,17 @@ header .logo {
     color: var(--link-text-color);
     margin-left: 50px;
     text-transform: uppercase;
-    font-size: 15px
+    font-size: 15px;
 }
 
 header .nav {
     flex: 2;
     display: flex;
-    justify-content: space-evenly
+    justify-content: space-evenly;
 }
 
 header li {
-    list-style: none
+    list-style: none;
 }
 
 header .nav li a {
@@ -142,28 +138,28 @@ header .nav li a {
     color: var(--link-text-color);
     font-weight: 600;
     text-transform: uppercase;
-    padding: 10px 15px
+    padding: 10px 15px;
 }
 
 header .nav li a:hover {
-    border-bottom: 2px solid var(--link-hover-border-color)
+    border-bottom: 2px solid var(--link-hover-border-color);
 }
 
 header .menu {
     font-size: 2.5em;
-    display: none
+    display: none;
 }
 
 #chk1 {
-    display: none
+    display: none;
 }
 
-#chk1:checked~.menu {
-    display: block
+#chk1:checked ~ .menu {
+    display: block;
 }
 
 .menu {
-    display: none
+    display: none;
 }
 
 .container {
@@ -171,7 +167,7 @@ header .menu {
     padding: 20px;
     background-color: var(--container-background-color);
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1)
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .artists-grid {
@@ -179,7 +175,7 @@ header .menu {
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
-    padding: 20px
+    padding: 20px;
 }
 
 .artist-card {
@@ -196,7 +192,7 @@ header .menu {
     align-items: center;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    overflow: hidden
+    overflow: hidden;
 }
 
 .artist-image-wrapper {
@@ -209,17 +205,17 @@ header .menu {
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center
+    text-align: center;
 }
 
 .artist-image {
     width: 100%;
     height: auto;
-    object-fit: cover
+    object-fit: cover;
 }
 
 .artist-details {
-    text-align: left
+    text-align: left;
 }
 
 .artist-locations,
@@ -228,46 +224,44 @@ header .menu {
 .artist-members {
     list-style: none;
     padding: 0;
-    margin: 0
+    margin: 0;
 }
 
 .artist-locations li,
 .artist-dates li,
 .artist-relations li,
 .artist-members li {
-    margin: 5px 0
+    margin: 5px 0;
 }
 
 .artist-info p,
 .artist-locations p,
 .artist-members p {
     margin: 1em 0;
-    /* Adjust spacing as needed */
-}
-.artist-card:hover {
-    transform: scale(1.03);
-    box-shadow: 0 6px 12px var(--card-hover-box-shadow)
 }
 
+.artist-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 12px var(--card-hover-box-shadow);
+}
 
 .choose-artists {
     width: 600px;
     height: 300px;
     background: var(--container-background-color);
     margin: auto;
-    padding: auto;
     text-align: center;
-    border-radius: 10px
+    border-radius: 10px;
 }
 
 .info-artists {
-    text-align: left
+    text-align: left;
 }
 
-@media(max-width:1000px) {
+@media (max-width: 1000px) {
     .search-box {
         max-width: 100%;
-        margin: 0
+        margin: 0;
     }
 
     header .nav {
@@ -279,106 +273,114 @@ header .menu {
         width: 50%;
         flex-direction: column;
         align-items: center;
-        transition: right 0.5s linear
+        transition: right 0.5s linear;
     }
 
     header .menu {
         display: block;
         width: 100px;
-        text-align: center
+        text-align: center;
     }
 
-    #chk1:checked~.nav {
-        right: 0
+    #chk1:checked ~ .nav {
+        right: 0;
     }
 }
 
-@media(max-width:600px) {
+@media (max-width: 600px) {
     header .logo {
         font-size: 10px;
-        margin-left: 10px
+        margin-left: 10px;
     }
 
     header .nav {
         width: 100%;
-        font-size: 12px
+        font-size: 12px;
     }
 
     .container {
         width: 100%;
-        padding: 10px
+        padding: 10px;
     }
 
     .main-element {
         width: 100%;
-        font-size: 14px
+        font-size: 14px;
     }
 }
 
-@media(min-width:768px) {
+@media (min-width: 768px) {
     .container {
-        padding-left: 30px
+        padding-left: 30px;
     }
 }
 
-@media(min-width:1024px) {
+@media (min-width: 1024px) {
     .container {
-        padding-left: 40px
+        padding-left: 40px;
     }
 }
 
-@media(min-width:1440px) {
+@media (min-width: 1440px) {
     .container {
-        padding-left: 50px
+        padding-left: 50px;
     }
 }
 
-@media(min-width:1024px) {
+@media (min-width: 1024px) {
     .artist-card {
         flex: 1 1 calc(20% - 20px);
-        max-width: calc(20% - 20px)
+        max-width: calc(20% - 20px);
     }
 }
 
-@media(max-width:1024px) {
+@media (max-width: 1024px) {
     .artist-card {
         flex: 1 1 calc(33.33% - 20px);
-        max-width: calc(33.33% - 20px)
+        max-width: calc(33.33% - 20px);
     }
 }
 
-@media(max-width:768px) {
+@media (max-width: 768px) {
     .artist-card {
         flex: 1 1 calc(50% - 20px);
-        max-width: calc(50% - 20px)
+        max-width: calc(50% - 20px);
     }
 }
 
-@media(max-width:480px) {
+@media (max-width: 480px) {
     .artist-card {
         flex: 1 1 calc(100% - 20px);
-        max-width: calc(100% - 20px)
+        max-width: calc(100% - 20px);
     }
 }
 
-@media(max-width:768px) {
+@media (max-width: 768px) {
     .artist-card:hover {
         transform: none;
-        box-shadow: none
+        box-shadow: none;
     }
 
     header .nav li a:hover {
-        border-bottom: none
+        border-bottom: none;
     }
 }
 
-@media(min-width:769px) {
+@media (min-width: 769px) {
     header .nav li a:hover {
-        border-bottom: 2px solid var(--link-hover-border-color)
+        border-bottom: 2px solid var(--link-hover-border-color);
     }
 
     .artist-card:hover {
         transform: scale(1.03);
-        box-shadow: 0 6px 12px var(--card-hover-box-shadow)
+        box-shadow: 0 6px 12px var(--card-hover-box-shadow);
     }
+}
+
+.image {
+    display: block;
+    margin-left: 3%;
+    margin-right: 20%;
+    border-radius: 10px;
+    width: 90%;
 }

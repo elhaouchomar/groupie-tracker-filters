@@ -1,20 +1,18 @@
 package controllers
 
 import (
+	"groupie-tracker/models"
 	"html/template"
 	"net/http"
-
-	"groupie-tracker/models"
 )
 
 func HandleIndex(w http.ResponseWriter, r *http.Request) {
-	if r.Method != http.MethodGet {
+	if r.Method != http.MethodGet && r.Method != http.MethodPost {
 		Err405(w)
 		return
 	}
 
-	tmplPath := "views/index.html"
-	t, err := template.ParseFiles(tmplPath, "views/header.html")
+	t, err := template.ParseFiles("views/index.html", "views/header.html")
 	if err != nil {
 		Err500(w)
 		return
@@ -25,7 +23,7 @@ func HandleIndex(w http.ResponseWriter, r *http.Request) {
 		Err500(w)
 		return
 	}
-	Filter(r, api)
+
 	if err := t.Execute(w, api.Artists); err != nil {
 		Err500(w)
 	}
